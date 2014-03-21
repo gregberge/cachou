@@ -28,9 +28,9 @@ Create a new custom cache.
 var cache = cachou({ ttl: 20 });
 ```
 
-#### Options
+There are several options avalaibles:
 
-##### redis
+#### redis
 
 Type: `Object` or `Function`
 
@@ -63,16 +63,40 @@ function createClient() {
 }
 ```
 
-##### ttl
+#### ttl
 
 Type: `Number`
 
-Specify the ttl of the cache in milliseconds.
+Specify the time after the cache will expire in milliseconds.
 
 ```js
 var cache = cachou({
   ttl: 3600 // 1 hour
 });
+```
+
+### cache.get(key, callback)
+
+Fetch a data from the cache.
+
+```js
+cache.get('my:key', function (err, data) { ... });
+```
+
+### cache.set(key, data, callback)
+
+Put a data in the cache.
+
+```js
+cache.set('my:key', { foo: 'bar' }, function (err) { ... });
+```
+
+### cache.del(key, callback)
+
+Remove a key from the cache.
+
+```js
+cache.del('my:key', function (err) { ... });
 ```
 
 ## License
