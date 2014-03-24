@@ -20,7 +20,7 @@ cache.get('user:23', function (err, user) { ... });
 cache.del('user:23', function (err) { ... });
 ```
 
-### cachou(options)
+### cachou(options) / new cachou.Cache(options);
 
 Create a new custom cache.
 
@@ -28,7 +28,13 @@ Create a new custom cache.
 var cache = cachou({ ttl: 20 });
 ```
 
-There are several options avalaibles:
+or
+
+```js
+var cache = new cachou.Cache({ ttl: 20 });
+```
+
+There are several options avalaible:
 
 #### redis
 
@@ -72,6 +78,18 @@ Specify the time after the cache will expire in milliseconds.
 ```js
 var cache = cachou({
   ttl: 3600 // 1 hour
+});
+```
+
+#### prefix
+
+Type: `String`
+
+Specify the prefix of the keys.
+
+```js
+var cache = cachou({
+  prefix: 'myprefix:'
 });
 ```
 
