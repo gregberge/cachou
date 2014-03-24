@@ -152,9 +152,9 @@ describe('Cache', function () {
       async.waterfall([
         function setKeys(next) {
           cache.redis.multi()
-          .set('a:key1', 'foo')
-          .set('a:key2', 'bar')
-          .set('b:key1', 'foo')
+          .set('cache:a:key1', 'foo')
+          .set('cache:a:key2', 'bar')
+          .set('cache:b:key1', 'foo')
           .exec(next);
         },
         function delKeys(rets, next) {
@@ -162,9 +162,9 @@ describe('Cache', function () {
         },
         function getKeys(rets, next) {
           cache.redis.multi()
-          .get('a:key1')
-          .get('a:key2')
-          .get('b:key1')
+          .get('cache:a:key1')
+          .get('cache:a:key2')
+          .get('cache:b:key1')
           .exec(next);
         },
         function checkKey(values, next) {
