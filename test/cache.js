@@ -144,4 +144,36 @@ describe('Cache', function () {
       ], done);
     });
   });
+
+  describe('#delAll', function () {
+    it('should delete multiple keys', function (done) {
+      var cache = createCache();
+
+      async.waterfall([
+        function setKeys(next) {
+          cache.redis.multi()
+          .set('a:key1', 'foo')
+          .set('a:key2', 'bar')
+          .set('b:key1', 'foo')
+          .exec(next);
+        },
+        function delKeys(rets, next) {
+          cache.delAll('a:*', next);
+        },
+        function getKeys(rets, next) {
+          cache.redis.multi()
+          .get('a:key1')
+          .get('a:key2')
+          .get('b:key1')
+          .exec(next);
+        },
+        function checkKey(values, next) {
+          expect(values[0]).to.be.null;
+          expect(values[1]).to.be.null;
+          expect(values[2]).to.not.be.null;
+          next();
+        }
+      ], done);
+    });
+  });
 });
