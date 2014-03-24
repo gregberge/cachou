@@ -20,7 +20,7 @@ cache.get('user:23', function (err, user) { ... });
 cache.del('user:23', function (err) { ... });
 ```
 
-### cachou(options) / new cachou.Cache(options);
+### cachou(options) / new cachou.Cache(options)
 
 Create a new custom cache.
 
