@@ -117,6 +117,14 @@ Remove a key from the cache.
 cache.del('my:key', function (err) { ... });
 ```
 
+### cache.delAll(pattern, callback)
+
+Delete key using a glob matching pattern.
+
+```js
+cache.delAll('my:*', function (err) { ... }); // Will delete all keys starting with "my:"
+```
+
 ## License
 
 MIT
