@@ -1,4 +1,4 @@
-# cachou
+# cachou [![Build Status](https://travis-ci.org/neoziro/angular-notification.svg?branch=master)](https://travis-ci.org/neoziro/angular-notification)
 
 Simple and fast cache module based on redis.
 
