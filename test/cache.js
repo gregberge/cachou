@@ -114,6 +114,40 @@ describe('Cache', function () {
         }
       ], done);
     });
+
+    it('should do nothing if ttl is equal to 0', function (done) {
+      var cache = createCache({ ttl: 0 });
+
+      async.waterfall([
+        function setKey(next) {
+          cache.set('otherkey', { foo: 'bar' }, next);
+        },
+        function exists(next) {
+          cache.redis.exists('cache:otherkey', next);
+        },
+        function checkExists(exists, next) {
+          expect(exists).to.equal(0);
+          next();
+        }
+      ], done);
+    });
+
+    it('should not specify TTL is ttl is null', function (done) {
+      var cache = createCache({ ttl: null });
+
+      async.waterfall([
+        function setKey(next) {
+          cache.set('nottlkey', { foo: 'bar' }, next);
+        },
+        function getTTL(next) {
+          cache.redis.ttl('cache:nottlkey', next);
+        },
+        function checkTTL(value, next) {
+          expect(value).to.equal(-1);
+          next();
+        }
+      ], done);
+    });
   });
 
   describe('#del', function () {
