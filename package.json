@@ -1,6 +1,6 @@
 {
   "name": "cachou",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Simple and fast cache module based on redis.",
   "main": "index.js",
   "directories": {
